@@ -1,0 +1,437 @@
+/* =========================
+   RESET GENERAL
+========================= */
+* {
+  box-sizing: border-box;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #2e3440, #0f1115);
+  color: #e6e6e6;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* =========================
+   CONTENEDOR APP
+========================= */
+.app {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 32px;
+  letter-spacing: 1px;
+  color: #f5f5f5;
+}
+
+/* =========================
+   CONTROLES SUPERIORES
+========================= */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   BUSCADOR
+========================= */
+#busqueda {
+  width: 100%;
+  margin: 20px 0;
+  background: #0f141c;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #f2f2f2;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+#busqueda::placeholder {
+  color: #7faea0;
+}
+
+#busqueda:focus {
+  outline: none;
+  border-color: #5cc8a1;
+  box-shadow: 0 0 0 2px rgba(92, 200, 161, 0.25);
+}
+
+/* =========================
+   FILTROS
+========================= */
+#filtros {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+#filtros select {
+  background: #0f141c;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #e6e6e6;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+#filtros select:focus {
+  outline: none;
+  border-color: #5cc8a1;
+}
+
+/* =========================
+   LISTA (REUTILIZA ESTILO INITIATIVE)
+========================= */
+#lista {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.item-card {
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.item-card:hover {
+  background: #243a34;
+  transform: translateY(-1px);
+}
+
+/* =========================
+   FILA TIPO INITIATIVE
+========================= */
+.initiative-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 14px 16px;
+  background: #1b1f2a;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  border-radius: 10px;
+}
+
+.initiative-row:nth-child(even) {
+  background: #161a24;
+}
+
+.initiative-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* =========================
+   TEXTO AUXILIAR
+========================= */
+.bonus-text {
+  font-size: 13px;
+  color: #9fdcc2;
+}
+
+/* =========================
+   BOTONES
+========================= */
+button {
+  background: linear-gradient(145deg, #2a3040, #161a24);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #f5f5f5;
+  padding: 10px 18px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+button:hover {
+  border-color: rgba(92, 200, 161, 0.4);
+}
+
+/* =========================
+   DETALLE
+========================= */
+#detalle {
+  margin-top: 30px;
+}
+
+.detalle-card {
+  padding: 22px 26px;
+  border-radius: 14px;
+  background: #161a24;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 0 24px rgba(0,0,0,0.6);
+}
+
+.detalle-card h2 {
+  margin-bottom: 6px;
+}
+
+.detalle-card h3 {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  color: #9fdcc2;
+}
+
+.detalle-card p {
+  line-height: 1.6;
+}
+
+/* =========================
+   BOTÓN VOLVER
+========================= */
+#detalleControls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+/* =========================
+   SCROLL SUAVE
+========================= */
+html {
+  scroll-behavior: smooth;
+}
+
+/* =========================
+   PANEL PRINCIPAL (TARJETA)
+========================= */
+.panel {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 0;
+  background: linear-gradient(145deg, #1b1f2a, #161a24);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.06);
+  min-height: 600px;
+}
+
+/* =========================
+   COLUMNA IZQUIERDA (LISTA)
+========================= */
+.panel-left {
+  background: #121620;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  overflow-y: auto;
+  padding: 10px;
+}
+
+/* Scroll elegante */
+.panel-left::-webkit-scrollbar {
+  width: 8px;
+}
+.panel-left::-webkit-scrollbar-thumb {
+  background: rgba(159,220,194,0.35);
+  border-radius: 6px;
+}
+
+/* =========================
+   COLUMNA DERECHA (DETALLE)
+========================= */
+.panel-right {
+  padding: 24px 28px;
+  overflow-y: auto;
+}
+
+/* =========================
+   ITEMS DE LISTA
+========================= */
+.item-card {
+  padding: 12px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.item-card:hover {
+  background: #243a34;
+}
+
+.item-card.active {
+  background: #243a34;
+  outline: 2px solid #5cc8a1;
+}
+
+/* =========================
+   DETALLE VACÍO
+========================= */
+.panel-right:empty::before {
+  content: "Selecciona un monstruo o conjuro";
+  color: #7faea0;
+  font-style: italic;
+}
+
+/* =========================
+   DETALLE COMO FICHA
+========================= */
+.detalle-card {
+  background: #161a24;
+  border-radius: 14px;
+  padding: 24px 28px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* =========================
+   HEADERS
+========================= */
+.detalle-card h2 {
+  margin-bottom: 6px;
+}
+
+.detalle-card h3 {
+  margin-top: 22px;
+  margin-bottom: 8px;
+  color: #9fdcc2;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+  .panel {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-left {
+    max-height: 300px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+}
+
+/* =========================
+   HEADER PRINCIPAL
+========================= */
+.main-header {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: linear-gradient(145deg, #1b1f2a, #161a24);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* IZQUIERDA */
+.header-left {
+  display: flex;
+  gap: 16px;
+}
+
+/* NAV CENTRAL */
+.header-nav {
+  display: flex;
+  gap: 22px;
+}
+
+/* LINKS */
+.header-link {
+  color: #e6e6e6;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  position: relative;
+  padding: 6px 2px;
+}
+
+.header-link:hover {
+  color: #9fdcc2;
+}
+
+/* ACTIVO */
+.header-link.active {
+  color: #9fdcc2;
+}
+
+.header-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: #5cc8a1;
+  border-radius: 2px;
+}
+
+/* LINKS AUTH */
+.header-link.auth {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.main-footer {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: 60px;
+  padding: 30px 0;
+  background: #0f1115;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  font-size: 13px;
+  color: #9fa3ad;
+}
+
+.footer-section p {
+  margin: 4px 0;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+/* =========================
+   RESPONSIVE HEADER / FOOTER
+========================= */
+@media (max-width: 900px) {
+  .header-inner {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .header-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-right {
+    text-align: center;
+  }
+}

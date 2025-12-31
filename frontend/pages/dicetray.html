@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Dice Tray</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ESTILOS -->
+    <link rel="stylesheet" href="../assets/css/dicestyles.css" />
+</head>
+
+<body onload="main.init()">
+
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="header-inner">
+            <div class="header-left">
+                <a href="#" class="header-link auth">Crear cuenta</a>
+                <a href="#" class="header-link auth">Iniciar sesión</a>
+            </div>
+
+            <nav class="header-nav">
+                <a href="../index.html" class="header-link">Inicio</a>
+                <a href="dicetray.html" class="header-link active">Dice Tray</a>
+                <a href="intiative.html" class="header-link">Initiative Tracker</a>
+                <a href="monspell.html" class="header-link">5e Compendium</a>
+                <a href="#" class="header-link">Crear Personajes</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="page-content">
+
+        <!-- MOTOR 3D -->
+        <div id="diceRoller"></div>
+
+        <!-- UI -->
+        <section id="diceRollerUI">
+
+            <div class="top_field">
+                <div class="input-row">
+                    <input type="text" id="textInput" placeholder="Ej: 1d20+2d6" />
+                    <input type="text" id="bonusInput" placeholder="+0" />
+                </div>
+
+                <div id="diceLimit" class="dice-limit" style="display:none;">
+                    Demasiados dados (máx. 20)
+                </div>
+            </div>
+
+            <div id="diceMenu" class="dice-menu">
+                <button onclick="addDie('d4')">d4</button>
+                <button onclick="addDie('d6')">d6</button>
+                <button onclick="addDie('d8')">d8</button>
+                <button onclick="addDie('d10')">d10</button>
+                <button onclick="addDie('d12')">d12</button>
+                <button onclick="addDie('d20')">d20</button>
+                <button onclick="addDie('d100')">d100</button>
+            </div>
+
+            <div class="roll-button-container">
+                <button id="rollBtn">Roll!</button>
+            </div>
+
+            <div class="center_field">
+                <p>Usa el menú para añadir dados y presiona <strong>Roll!</strong></p>
+            </div>
+
+            <div class="bottom_field">
+                <span id="result"></span>
+            </div>
+
+            <div id="dice-log" class="dice-log">
+                Esperando tirada…
+            </div>
+
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-inner">
+            <div class="footer-section">
+                <strong>Proyecto D&D 5e Tools</strong>
+                <p>Herramientas digitales para Dungeon Masters y jugadores.</p>
+            </div>
+
+            <div class="footer-section">
+                <p>Datos obtenidos de la API pública de D&D 5e.</p>
+                <p>No afiliado a Wizards of the Coast.</p>
+            </div>
+
+            <div class="footer-section footer-right">
+                <p>© 2025</p>
+                <p>Y que tires muchos 20s.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LIBRERÍAS -->
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/cannon.min.js"></script>
+    <script src="../libs/teal.js"></script>
+
+    <!-- MOTOR -->
+    <script src="../js/dice.js"></script>
+    <script src="../js/maindice.js"></script>
+
+    <script>
+        function addDie(die) {
+            const input = document.getElementById("textInput");
+            input.value = input.value ? input.value + "+1" + die : "1" + die;
+            if (window.main?.setInput) main.setInput();
+        }
+    </script>
+
+</body>
+</html>

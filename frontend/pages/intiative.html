@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Initiative Tracker</title>
+    <link rel="stylesheet" href="../assets/css/initiativestyles.css">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="header-inner">
+            <div class="header-left">
+                <a href="#" class="header-link auth">Crear cuenta</a>
+                <a href="#" class="header-link auth">Iniciar sesión</a>
+            </div>
+
+            <nav class="header-nav">
+                <a href="#" class="header-link">Inicio</a>
+                <a href="dicetray.html" class="header-link">Dice Tray</a>
+                <a href="intiative.html" class="header-link active">Initiative Tracker</a>
+                <a href="monspell.html" class="header-link">5e Compendium</a>
+                <a href="#" class="header-link">Crear Personajes</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="app">
+        <h1>Initiative Tracker</h1>
+
+        <div class="turn-controls">
+            <button id="nextTurn">SIGUIENTE</button>
+            <div class="turn-info">
+                <span id="roundDisplay">Asalto 1</span>
+                <span id="timeDisplay">00:00</span>
+            </div>
+        </div>
+
+
+        <div class="initiative-header">
+            <div></div>
+            <div>INIT</div>
+            <div>NOMBRE</div>
+            <div>PG</div>
+            <div>CA</div>
+            <div>INIT BONUS</div>
+            <div></div>
+        </div>
+
+        <div class="initiative-wrapper">
+
+            <div id="initiative-list"></div>
+
+            <div class="controls">
+                <button id="addRow">Añadir</button>
+                <button id="sortInit">Sort</button>
+                <button id="clearAll" class="danger">Limpiar</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="confirmModal" class="modal hidden">
+        <div class="modal-box">
+            <p>¿Estás seguro de que quieres limpiar la lista de iniciativa?</p>
+            <div class="modal-actions">
+                <button id="confirmYes" class="danger">Sí, limpiar</button>
+                <button id="confirmNo">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/maininitiative.js"></script>
+
+    <footer class="main-footer">
+        <div class="footer-inner">
+            <div class="footer-section">
+                <strong>Proyecto D&D 5e Tools</strong>
+                <p>Herramientas digitales para Dungeon Masters y jugadores.</p>
+            </div>
+
+            <div class="footer-section">
+                <p>Datos obtenidos de la API pública de D&D 5e.</p>
+                <p>No afiliado oficialmente a Wizards of the Coast.</p>
+            </div>
+
+            <div class="footer-section footer-right">
+                <p>© 2025 – Proyecto personal</p>
+                <p>Y que tires muchos 20s.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

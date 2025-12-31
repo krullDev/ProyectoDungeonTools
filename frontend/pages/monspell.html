@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>D&D 5e Compendio</title>
+    <link rel="stylesheet" href="../assets/css/monspells.css">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="header-inner">
+            <div class="header-left">
+                <a href="#" class="header-link auth">Crear cuenta</a>
+                <a href="#" class="header-link auth">Iniciar sesión</a>
+            </div>
+
+            <nav class="header-nav">
+                <a href="#" class="header-link">Inicio</a>
+                <a href="dicetray.html" class="header-link">Dice Tray</a>
+                <a href="intiative.html" class="header-link">Initiative Tracker</a>
+                <a href="monspell.html" class="header-link active">5e Compendium</a>
+                <a href="#" class="header-link">Crear Personajes</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <div class="app">
+        <h1>D&D 5e Compendium</h1>
+
+        <div class="controls">
+            <button id="btnMonstruos">Monstruos</button>
+            <button id="btnConjuros">Conjuros</button>
+        </div>
+
+        <input id="busqueda" placeholder="Buscar..." />
+
+        <div id="filtros" class="turn-controls"></div>
+
+        <div class="panel">
+            <div class="panel-left" id="lista"></div>
+            <div class="panel-right" id="detalle"></div>
+        </div>
+
+    </div>
+
+    <script src="../js/monspell-data.js"></script>
+    <script src="../js/monspell-ui.js"></script>
+    <script src="../js/monspell-app.js"></script>
+
+    <footer class="main-footer">
+        <div class="footer-inner">
+            <div class="footer-section">
+                <strong>Proyecto D&D 5e Tools</strong>
+                <p>Herramientas digitales para Dungeon Masters y jugadores.</p>
+            </div>
+
+            <div class="footer-section">
+                <p>Datos obtenidos de la API pública de D&D 5e.</p>
+                <p>No afiliado oficialmente a Wizards of the Coast.</p>
+            </div>
+
+            <div class="footer-section footer-right">
+                <p>© 2025 – Proyecto personal</p>
+                <p>Y que tires muchos 20s.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
