@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8" />
     <title>Dice Tray</title>
@@ -14,18 +15,58 @@
     <!-- HEADER -->
     <header class="main-header">
         <div class="header-inner">
-            <div class="header-left">
-                <a href="#" class="header-link auth">Crear cuenta</a>
-                <a href="#" class="header-link auth">Iniciar sesión</a>
+            <div class="header-left" id="headerAuth">
+                <!-- Aqui se remplaza dinamicamente -->
             </div>
+
+            <script>
+                const headerAuth = document.getElementById("headerAuth");
+
+                const userId = localStorage.getItem("userId");
+                const username = localStorage.getItem("username");
+
+                if (userId) {
+                    // Si hay usuario logueado, mostrar "Cerrar sesión"
+                    headerAuth.innerHTML = `
+                        <span class="header-username">Hola, ${username}</span>
+                        <a href="#" class="header-link auth" id="logoutLink">Cerrar sesión</a>
+                    `;
+
+                    const logoutLink = document.getElementById("logoutLink");
+                    logoutLink.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        localStorage.clear(); // Limpiar sesión
+                        window.location.href = "login.html"; // Redirigir al login
+                    });
+                } else {
+                    // Si no hay usuario, mostrar login / register
+                    headerAuth.innerHTML = `
+                        <a href="register.html" class="header-link auth">Crear cuenta</a>
+                        <a href="login.html" class="header-link auth">Iniciar sesión</a>
+                    `;
+                }
+            </script>
 
             <nav class="header-nav">
                 <a href="../index.html" class="header-link">Inicio</a>
-                <a href="dicetray.html" class="header-link active">Dice Tray</a>
+                <a href="dicetray.html" class="header-link  active">Dice Tray</a>
                 <a href="intiative.html" class="header-link">Initiative Tracker</a>
                 <a href="monspell.html" class="header-link">5e Compendium</a>
-                <a href="#" class="header-link">Crear Personajes</a>
+                <a href="dashboard.html" class="header-link" id="createCharacterLink">Crear Personajes</a>
             </nav>
+
+            <script>
+                const createLink = document.getElementById("createCharacterLink");
+
+                createLink.addEventListener("click", (e) => {
+                    const userId = localStorage.getItem("userId");
+                    if (!userId) {
+                        e.preventDefault(); // Evita ir a dashboard.html
+                        alert("Necesitas tener una cuenta para crear un personaje.");
+                    }
+                });
+            </script>
+
         </div>
     </header>
 
@@ -116,4 +157,5 @@
     </script>
 
 </body>
+
 </html>

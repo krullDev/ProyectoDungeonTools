@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>KRDM Tools</title>
+
+  <!-- CSS PRINCIPAL -->
+  <link rel="stylesheet" href="/frontend/assets/css/indexstyles.css" />
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="header-inner">
+
+      <div class="header-left">
+        <strong>KRDM Tools</strong>
+      </div>
+
+      <nav class="header-nav">
+        <a class="header-link active" href="index.html">Inicio</a>
+        <a class="header-link" href="/frontend/pages/dicetray.html">Dice Tray</a>
+        <a class="header-link" href="/frontend/pages/intiative.html">Initiative</a>
+        <a class="header-link" href="/frontend/pages/monspell.html">Compendium</a>
+      </nav>
+
+      <div class="header-left" id="headerAuth">
+        <!-- Se rellena dinámicamente -->
+      </div>
+
+    </div>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main class="app home">
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1>KRDM Tools</h1>
+      <p>Herramientas para jugadores y Dungeon Masters de D&D 5e</p>
+    </section>
+
+    <!-- SEARCH -->
+    <section class="search-section">
+      <input type="text" placeholder="Buscar herramientas, personajes, hechizos..." disabled />
+    </section>
+
+    <!-- TOOLS GRID -->
+    <section class="tools-grid">
+
+      <a href="/frontend/pages/dicetray.html" class="tool-card">
+        <img src="/frontend/assets/icons/dice-d20.svg" alt="D20">
+        <h3>Dice Tray</h3>
+        <p>Tirador de dados 3D en tiempo real</p>
+      </a>
+
+      <a href="/frontend/pages/initiative.html" class="tool-card">
+        <h3>Initiative Tracker</h3>
+        <p>Controla turnos, HP y estados</p>
+      </a>
+
+      <a href="/frontend/pages/monspell.html" class="tool-card">
+        <h3>Spells & Monsters</h3>
+        <p>Explora criaturas y conjuros</p>
+      </a>
+
+      <!-- CHARACTERS -->
+      <a href="/frontend/pages/dashboard.html" class="tool-card" id="charactersCard">
+        <h3>Characters</h3>
+        <p>Crea y gestiona tus personajes</p>
+      </a>
+
+    </section>
+
+  </main>
+
+  <!-- MODAL LOGIN -->
+  <div class="modal-overlay hidden" id="loginModal">
+    <div class="modal-card">
+      <h2>Inicia sesión</h2>
+      <p>Necesitas una cuenta para crear y gestionar personajes.</p>
+
+      <div class="modal-actions">
+        <a href="/frontend/pages/login.html" class="modal-btn primary">Iniciar sesión</a>
+        <a href="/frontend/pages/register.html" class="modal-btn">Crear cuenta</a>
+      </div>
+
+      <button class="modal-close" id="closeModal">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="footer-inner">
+
+      <div class="footer-section">
+        <p>KRDM Tools</p>
+        <p>Proyecto académico</p>
+      </div>
+
+      <div class="footer-section">
+        <p>Dice Tray</p>
+        <p>Initiative Tracker</p>
+        <p>Compendium</p>
+      </div>
+
+      <div class="footer-section footer-right">
+        <p>© 2026</p>
+        <p>Diseño Web</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    const headerAuth = document.getElementById("headerAuth");
+    const charactersCard = document.getElementById("charactersCard");
+    const loginModal = document.getElementById("loginModal");
+    const closeModal = document.getElementById("closeModal");
+
+    const userId = localStorage.getItem("userId");
+    const username = localStorage.getItem("username");
+
+    // HEADER AUTH
+    if (userId) {
+      headerAuth.innerHTML = `
+        <span class="header-username">Hola, ${username}</span>
+        <a href="#" class="header-link auth" id="logoutLink">Cerrar sesión</a>
+      `;
+
+      document.getElementById("logoutLink").addEventListener("click", (e) => {
+        e.preventDefault();
+        localStorage.clear();
+        window.location.href = "/frontend/pages/login.html";
+      });
+    } else {
+      headerAuth.innerHTML = `
+        <a href="/frontend/pages/login.html" class="header-link auth">Iniciar sesión</a>
+        <a href="/frontend/pages/register.html" class="header-link auth">Crear cuenta</a>
+      `;
+    }
+
+    // BLOQUEO CHARACTERS
+    charactersCard.addEventListener("click", (e) => {
+      if (!userId) {
+        e.preventDefault();
+        loginModal.classList.remove("hidden");
+      }
+    });
+
+    closeModal.addEventListener("click", () => {
+      loginModal.classList.add("hidden");
+    });
+
+    loginModal.addEventListener("click", (e) => {
+      if (e.target === loginModal) {
+        loginModal.classList.add("hidden");
+      }
+    });
+  </script>
+
+</body>
+
+</html>

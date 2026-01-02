@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login - D&D Dashboard</title>
+    <link rel="stylesheet" href="../assets/css/formstyles.css">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="header-inner">
+            <div class="header-left" id="headerAuth"></div>
+
+            <nav class="header-nav">
+                <a href="../index.html" class="header-link">Inicio</a>
+                <a href="dicetray.html" class="header-link">Dice Tray</a>
+                <a href="intiative.html" class="header-link">Initiative Tracker</a>
+                <a href="monspell.html" class="header-link">5e Compendium</a>
+                <a href="dashboard.html" class="header-link" id="createCharacterLink">Crear Personajes</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="auth-container">
+            <h1>Iniciar Sesión</h1>
+
+            <form id="loginForm">
+                <input type="text" id="usernameInput" placeholder="Usuario" required />
+                <input type="password" id="passwordInput" placeholder="Contraseña" required />
+                <button type="submit">Ingresar</button>
+            </form>
+
+            <p>¿No tienes cuenta? <a href="register.html">Regístrate aquí</a></p>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-inner">
+            <div class="footer-section">
+                <strong>Proyecto D&D 5e Tools</strong>
+                <p>Herramientas digitales para Dungeon Masters y jugadores.</p>
+            </div>
+            <div class="footer-section">
+                <p>Datos obtenidos de la API pública de D&D 5e.</p>
+                <p>No afiliado oficialmente a Wizards of the Coast.</p>
+            </div>
+            <div class="footer-section footer-right">
+                <p>© 2025 – Proyecto personal</p>
+                <p>Y que tires muchos 20s.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const headerAuth = document.getElementById("headerAuth");
+        const userId = localStorage.getItem("userId");
+        const username = localStorage.getItem("username");
+
+        if (userId) {
+            headerAuth.innerHTML = `
+                <span class="header-username">Hola, ${username}</span>
+                <a href="#" class="header-link auth" id="logoutLink">Cerrar sesión</a>
+            `;
+            document.getElementById("logoutLink").addEventListener("click", (e) => {
+                e.preventDefault();
+                localStorage.clear();
+                window.location.href = "login.html";
+            });
+        } else {
+            headerAuth.innerHTML = `
+                <a href="register.html" class="header-link auth">Crear cuenta</a>
+                <a href="login.html" class="header-link auth">Iniciar sesión</a>
+            `;
+        }
+
+        // Prevenir acceso a dashboard si no hay usuario
+        const createLink = document.getElementById("createCharacterLink");
+        createLink.addEventListener("click", (e) => {
+            if (!localStorage.getItem("userId")) {
+                e.preventDefault();
+                alert("Necesitas tener una cuenta para crear un personaje.");
+            }
+        });
+
+        // Formulario login
+        const loginForm = document.getElementById("loginForm");
+        loginForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const usernameInput = document.getElementById("usernameInput").value;
+            const passwordInput = document.getElementById("passwordInput").value;
+
+            try {
+                const res = await fetch("http://localhost:3000/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username: usernameInput, password: passwordInput })
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    localStorage.setItem("userId", data.userId);
+                    localStorage.setItem("username", data.username);
+                    window.location.href = "dashboard.html";
+                } else {
+                    alert(data.error || "Credenciales incorrectas");
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Error de conexión");
+            }
+        });
+    </script>
+
+</body>
+</html>

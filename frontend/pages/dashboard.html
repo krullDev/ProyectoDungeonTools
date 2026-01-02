@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - D&D</title>
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="header-inner">
+      <div class="header-left" id="headerAuth">
+        <!-- Contenido dinámico: login / register o usuario -->
+      </div>
+
+      <nav class="header-nav">
+        <a href="../index.html" class="header-link">Inicio</a>
+        <a href="dicetray.html" class="header-link">Dice Tray</a>
+        <a href="intiative.html" class="header-link">Initiative Tracker</a>
+        <a href="monspell.html" class="header-link">5e Compendium</a>
+        <a href="dashboard.html" class="header-link active">Crear Personajes</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="app">
+    <h1>Bienvenido, <span id="welcome"></span></h1>
+
+    <!-- CREAR NUEVO PERSONAJE -->
+    <section class="create-character">
+      <h2>Crear Nuevo Personaje</h2>
+      <form id="createCharacterForm">
+        <input type="text" id="charName" placeholder="Nombre" required>
+        <input type="text" id="charClass" placeholder="Clase">
+        <input type="text" id="charSpecies" placeholder="Especie">
+        <input type="text" id="charBackground" placeholder="Trasfondo">
+        <input type="text" id="charTraits" placeholder="Rasgos (coma separados)">
+        <input type="number" id="charLevel" placeholder="Nivel" value="1" min="1">
+        <button type="submit">Crear Personaje</button>
+      </form>
+    </section>
+
+    <!-- LISTA DE PERSONAJES -->
+    <section class="characters-list-section">
+      <h2>Mis Personajes</h2>
+      <div id="charactersList" class="characters-grid"></div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="footer-inner">
+      <div class="footer-section">
+        <strong>Proyecto D&D 5e Tools</strong>
+        <p>Herramientas digitales para Dungeon Masters y jugadores.</p>
+      </div>
+      <div class="footer-section">
+        <p>No afiliado oficialmente a Wizards of the Coast.</p>
+      </div>
+      <div class="footer-section footer-right">
+        <p>© 2025 – Proyecto personal</p>
+        <p>Y que tires muchos 20s.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL DE PERSONAJE -->
+  <div id="characterModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="char-modal-header">
+        <img id="charImage" src="../assets/images/placeholder.png" alt="Imagen del personaje">
+        <div class="char-modal-title">
+          <h2 id="charNameModal"></h2>
+          <button id="editCharBtn">Editar</button>
+        </div>
+      </div>
+      <div class="char-modal-body">
+        <div class="char-info">
+          <p>Clase: <span id="charClassModal"></span></p>
+          <p>Nivel: <span id="charLevelModal"></span></p>
+          <p>Especie: <span id="charSpeciesModal"></span></p>
+          <p>Trasfondo: <span id="charBackgroundModal"></span></p>
+        </div>
+
+        <div class="stats">
+          <h4>Stats</h4>
+
+          <label>Fuerza
+            <input type="number" id="strengthModal" min="0" max="30">
+          </label>
+
+          <label>Destreza
+            <input type="number" id="dexterityModal" min="0" max="30">
+          </label>
+
+          <label>Constitución
+            <input type="number" id="constitutionModal" min="0" max="30">
+          </label>
+
+          <label>Inteligencia
+            <input type="number" id="intelligenceModal" min="0" max="30">
+          </label>
+
+          <label>Sabiduría
+            <input type="number" id="wisdomModal" min="0" max="30">
+          </label>
+
+          <label>Carisma
+            <input type="number" id="charismaModal" min="0" max="30">
+          </label>
+        </div>
+
+
+        <div class="extras">
+          <h4>Rasgos, Equipo, Hechizos, Notas</h4>
+          <p><strong>Traits:</strong> <span id="traitsModal"></span></p>
+          <p><strong>Equipment:</strong> <span id="equipmentModal"></span></p>
+          <p><strong>Spells:</strong> <span id="spellsModal"></span></p>
+          <p><strong>Notes:</strong> <span id="notesModal"></span></p>
+        </div>
+
+        <div id="editSection" class="edit-section">
+          <h4>Editar Personaje</h4>
+          <input type="text" id="editName" placeholder="Nombre">
+          <input type="text" id="editClass" placeholder="Clase">
+          <input type="number" id="editLevel" placeholder="Nivel">
+          <input type="text" id="editSpecies" placeholder="Especie">
+          <input type="text" id="editBackground" placeholder="Trasfondo">
+          <textarea id="editTraits" placeholder="Rasgos"></textarea>
+          <textarea id="editEquipment" placeholder="Equipo"></textarea>
+          <textarea id="editSpells" placeholder="Hechizos"></textarea>
+          <textarea id="editNotes" placeholder="Notas"></textarea>
+          <input type="file" id="editImage">
+          <button id="saveChangesBtn">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/dashboard.js"></script>
+</body>
+
+</html>
